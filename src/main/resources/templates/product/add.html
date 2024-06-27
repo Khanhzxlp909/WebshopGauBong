@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <title>Thêm Sản Phẩm</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            flex: 1 1 calc(70% - 20px);
+            /* Cách nhau 20px */
+            margin-bottom: 15px;
+        }
+
+        .form-group.full-width {
+            flex: 1 1 100%;
+        }
+
+        .form-group.price-input,
+        .form-group.quantity-input {
+            flex-basis: calc(50% - 20px);
+            margin-right: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: calc(100% - 10px);
+            /* Tự tính toán chiều rộng với margin 10px */
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Thêm CSS để chỉnh layout */
+        .form-group.name-input {
+            flex: 1 1 100%;
+        }
+
+        .form-group.price-input,
+        .form-group.quantity-input {
+            flex-basis: calc(50% - 10px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Thêm Sản Phẩm Mới</h1>
+        <form th:action="@{/home/store}" method="POST">
+            
+            <div class="form-group name-input">
+                <label for="name">Tên sản phẩm:</label>
+                <input type="text" th:field="*{product.Tensanpham}" required>
+            </div>
+            
+            <div class="form-group price-input">
+                <label for="price">Giá:</label>
+                <input type="number"th:field="*{product.Gia}" name="price" required>
+            </div>
+            
+            <div class="form-group quantity-input">
+                <label for="quantity">Số lượng:</label>
+                <input type="number" th:field="*{product.Soluong}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="category">Danh mục:</label>
+                <select th:field="*{product.danhmucsp}" required>
+                    <option th:each="danhmuc: ${danhmucs}" th:value="${danhmuc.ID}" th:text="${danhmuc.Tendanhmuc}"></option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="color">Màu sắc:</label>
+                <select th:field="*{product.mausac}" required>
+                    <option th:each="mausac: ${mausacs}" th:value="${mausac.ID}" th:text="${mausac.Tenmausac}"></option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="brand">Thương hiệu:</label>
+               <select th:field="*{product.thuonghieu}" required>
+                    <option th:each="thuonghieu: ${thuonghieus}" th:value="${thuonghieu.ID}" th:text="${thuonghieu.Tenthuonghieu}"></option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="weight">Trọng lượng:</label>
+                <select th:field="*{product.trongluong}" required>
+                    <option th:each="trongluong: ${trongluongs}" th:value="${trongluong.ID}" th:text="${trongluong.Trongluong}"></option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="material">Chất liệu:</label>
+                <select th:field="*{product.chatlieu}" required>
+                    <option th:each="chatlieu: ${chatlieus}" th:value="${chatlieu.ID}" th:text="${chatlieu.TenChatLieu}"></option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="size">Kích cỡ:</label>
+                <select th:field="*{product.size}" required>
+                    <option th:each="size: ${sizes}" th:value="${size.ID}" th:text="${size.Tensize}"></option>
+                </select>
+            </div>
+            
+            <div class="form-group full-width">
+                <button type="submit">Thêm Sản Phẩm</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

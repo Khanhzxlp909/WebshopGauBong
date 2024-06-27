@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:each="ctsp: ${ctsps}" th:text="${ctsp.Tensanpham}"></title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img class="logo" src="\images\LogoApp.png" alt="">
+            <div class="menu">
+                <input type="text" placeholder="Bạn cần tìm gì?">
+                <button>Gọi mua hàng</button>
+                <button>Cửa hàng gần bạn</button>
+                <button>Tra cứu đơn hàng</button>
+                <button>Giỏ hàng</button>
+            </div>
+        </div>
+    </header>
+    <main th:each="ctsp: ${ctsps}">
+        <section class="product-overview">
+            <div class="product-image">
+                <img src="z5322458450847_dd8923c230b28fb1125c37a52263ab4f.png" alt="Gau Bong">
+            </div>
+            <div class="product-info" >
+                <h1 th:text="${ctsp.Tensanpham}"></h1>
+                <div class="rating">★★★★★ 0 đánh giá</div>
+                <div class="product-options">
+                    <div class="storage-options">
+                        <button th:text="${ctsp.Gia} + đ  "></button>
+                    </div>
+                    <div class="color-options">
+                        <select class="selected">
+                            <option th:text="${ctsp.mausac.Tenmausac}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="buy-now">Mua ngay</button>
+                    <button class="installment">Trả góp 0%</button>
+                    <button class="trade-in">Thu cũ lên đời</button>
+                </div>
+            </div>
+        </section>
+        <section class="product-details">
+            <h2>Thông tin sản phẩm</h2>
+            <ul>
+                <li>Sản phẩm gấu bông mới nhất</li>
+                <li th:text="'Cân nặng: ' + ${ctsp.trongluong.Trongluong}"></li>
+                <li th:text="'Kích cỡ: ' + ${ctsp.size.Tensize}"></li>
+                <li th:text="'Chủng loại: ' + ${ctsp.danhmucsp.Tendanhmuc}"></li>
+                <li th:text="'Màu sắc: ' + ${ctsp.mausac.Tenmausac}"></li>
+                <li th:text="'Thương hiệu: ' + ${ctsp.thuonghieu.Tenthuonghieu}"></li>
+                <li th:text="'Chất liệu: ' + ${ctsp.chatlieu.Tenchatlieu}"></li>
+            </ul>
+        </section>
+        
+    </main>
+    <footer>
+        <p>&copy; 2024 Sario World. All rights reserved.</p>
+    </footer>
+</body>
+</html>

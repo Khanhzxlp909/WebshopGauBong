@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cart-login a {
+            color: white;
+            margin-left: 15px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .product-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            border-radius: 8px;
+        }
+
+        .product-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+        }
+
+        .thumbnail {
+            max-width: 50px;
+            margin-top: 10px;
+        }
+
+        .product-details {
+            flex: 2;
+            padding: 0 20px;
+        }
+
+        .product-details h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .reviews {
+            display: flex;
+            align-items: center;
+        }
+
+        .reviews span {
+            margin-right: 10px;
+        }
+
+        .stars {
+            color: gold;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: red;
+        }
+
+        .new-price {
+            font-size: 24px;
+            color: #e67e22;
+        }
+
+        .sizes,
+        .colors,
+        .quantity {
+            margin: 15px 0;
+        }
+
+        .sizes span,
+        .colors span {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .colors .color {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            border-radius: 50%;
+        }
+
+        .colors .orange {
+            background-color: orange;
+        }
+
+        .colors .blue {
+            background-color: blue;
+        }
+
+        .colors .green {
+            background-color: green;
+        }
+
+        .quantity input {
+            width: 50px;
+            padding: 5px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            background-color: #e67e22;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="#">Nền tảng</a></li>
+                    <li><a href="#">Trang chủ</a></li>
+                    <li><a href="#">Quản trị</a></li>
+                    <li><a href="#">Sản phẩm</a></li>
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm">
+                    <button>Tìm kiếm</button>
+                </div>
+                <div class="cart-login">
+                    <a href="#">Giỏ hàng</a>
+                    <a href="#">Đăng nhập</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="product-container">
+        <div class="product-image">
+            <img src="ipad.png" alt="Apple iPad 4">
+            <img src="ipad-thumbnail.png" alt="Apple iPad 4" class="thumbnail">
+        </div>
+        <div class="product-details">
+            <h1>APPLE IPAD 4 WIFI 16GB</h1>
+            <div class="reviews">
+                <span>999 reviews</span>
+                <div class="stars">
+                    ★★★★☆
+                </div>
+            </div>
+            <p>CPU Dual-core Cortex-A9 tốc độ 1GHz</p>
+            <p class="old-price">Giá cũ: 11,800,000 VND</p>
+            <p class="new-price">GIÁ HIỆN TẠI: 11,800,000 VND</p>
+            <p>100% hàng Chất lượng, đảm bảo Uy tín!</p>
+            <div class="sizes">
+                <label>SIZES:</label>
+                <span>S</span>
+                <span>M</span>
+                <span>L</span>
+                <span>XL</span>
+            </div>
+            <div class="colors">
+                <label>COLORS:</label>
+                <span class="color orange"></span>
+                <span class="color blue"></span>
+                <span class="color green"></span>
+            </div>
+            <div class="quantity">
+                <label>Số lượng đặt mua:</label>
+                <input type="number" value="1" min="1">
+            </div>
+            <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+        </div>
+    </div>
+    <footer>
+        <p>Bản quyền © bởi Nền Tảng - 2019. Hành trang tới Tương lai</p>
+    </footer>
+</body>
+
+</html>

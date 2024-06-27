@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Attributes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .column {
+            width: 48%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .column h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .attribute-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .attribute-section h3 {
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #555;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .pagination button:hover {
+            background-color: #0056b3;
+        }
+
+        .pagination button.disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="column">
+            <h2>Product Attributes - Column 1</h2>
+
+            <div class="attribute-section">
+                <h3>Màu sắc</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="color-id">ID</label>
+                        <input type="text" id="color-id" name="color-id" placeholder="Nhập ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="color-name">Tên</label>
+                        <input type="text" id="color-name" name="color-name" placeholder="Nhập tên">
+                    </div>
+                    <div class="form-group">
+                        <label for="color-description">Mô tả</label>
+                        <input type="text" id="color-description" name="color-description" placeholder="Nhập mô tả">
+                    </div>
+                    <div class="form-group">
+                        <label for="color-status">Trạng thái</label>
+                        <input type="text" id="color-status" name="color-status" placeholder="Nhập trạng thái">
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mausac-body" class="table-body">
+                        <tr th:each="mausac,iterStat : ${mausacs}">
+                                <td th:text="${mausac.ID}"></td>
+                                <td th:text="${mausac.Tenmausac}"></td>
+                                <td th:text="${mausac.Trangthai}"></td>
+                            </tr>
+                            <tr th:if="${#lists.size(mausacs) < 10}" th:each="i : ${#numbers.sequence(1, 10 - #lists.size(mausacs))}">
+                                <td colspan="3">&nbsp;</td>
+                            </tr>
+                    </tbody>
+                </table>
+                <div id="mausac-pagination" class="pagination">
+                    <!-- Pagination buttons will be inserted here -->
+                </div>
+            </div>
+
+            <div class="attribute-section">
+                <h3>Thương hiệu</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="brand-id">ID</label>
+                        <input type="text" id="brand-id" name="brand-id" placeholder="Nhập ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="brand-name">Tên</label>
+                        <input type="text" id="brand-name" name="brand-name" placeholder="Nhập tên">
+                    </div>
+                    <div class="form-group">
+                        <label for="brand-description">Mô tả</label>
+                        <input type="text" id="brand-description" name="brand-description" placeholder="Nhập mô tả">
+                    </div> 
+                    <div class="form-group">
+                        <label for="brand-status">Trạng thái</label>
+                        <input type="text" id="brand-status" name="brand-status" placeholder="Nhập trạng thái">
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Mô tả</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody id="thuonghieu-body" class="table-body">
+                       <tr th:each="thuonghieu,iterStat : ${thuonghieus}">
+                                <td th:text="${thuonghieu.ID}"></td>
+                                <td th:text="${thuonghieu.Tenthuonghieu}"></td>
+                                <td th:text="${thuonghieu.Motathuonghieu}"></td>
+                                <td th:text="${thuonghieu.Trangthai}"></td>
+                            </tr>
+                            <tr th:if="${#lists.size(thuonghieus) < 10}" th:each="i : ${#numbers.sequence(1, 10 - #lists.size(thuonghieus))}">
+                                <td colspan="4">&nbsp;</td>
+                            </tr>
+                    </tbody>
+                </table>
+                <div id="thuonghieu-pagination" class="pagination">
+                    <!-- Pagination buttons will be inserted here -->
+                </div>
+            </div>
+
+            <div class="attribute-section">
+                <h3>Trọng lượng</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="weight-id">ID</label>
+                        <input type="text" id="weight-id" name="weight-id" placeholder="Nhập ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="weight-name">Tên</label>
+                        <input type="text" id="weight-name" name="weight-name" placeholder="Nhập tên">
+                    </div>
+                    <div class="form-group">
+                        <label for="weight-description">Mô tả</label>
+                        <input type="text" id="weight-description" name="weight-description" placeholder="Nhập mô tả">
+                    </div>
+                    <div class="form-group">
+                        <label for="weight-status">Trạng thái</label>
+                        <input type="text" id="weight-status" name="weight-status" placeholder="Nhập trạng thái">
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody id="trongluong-body" class="table-body">
+                        <tr th:each="trongluong,iterStat : ${trongluongs}">
+                                <td th:text="${trongluong.ID}"></td>
+                                <td th:text="${trongluong.Trongluong}"></td>
+                                <td th:text="${trongluong.Trangthai}"></td>
+                            </tr>
+                            <tr th:if="${#lists.size(trongluongs) < 10}" th:each="i : ${#numbers.sequence(1, 10 - #lists.size(trongluongs))}">
+                                <td colspan="3">&nbsp;</td>
+                            </tr>
+                    </tbody>
+                </table>
+                <div id="trongluong-pagination" class="pagination">
+                    <!-- Pagination buttons will be inserted here -->
+                </div>
+            </div>
+
+            
+        </div>
+
+        <div class="column">
+            <h2>Product Attributes - Column 2</h2>
+            
+            <div class="attribute-section">
+                <h3>Danh mục sản phẩm</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="category-id">ID</label>
+                        <input type="text" id="category-id" name="category-id" placeholder="Nhập ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="category-name">Tên</label>
+                        <input type="text" id="category-name" name="category-name" placeholder="Nhập tên">
+                    </div>
+                    <div class="form-group">
+                        <label for="category-description">Mô tả</label>
+                        <input type="text" id="category-description" name="category-description" placeholder="Nhập mô tả">
+                    </div>
+                    <div class="form-group">
+                        <label for="category-status">Trạng thái</label>
+                        <input type="text" id="category-status" name="category-status" placeholder="Nhập trạng thái">
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody id="danhmuc-body" class="table-body">
+                       <tr th:each="danhmuc,iterStat : ${danhmucs}">
+                                <td th:text="${danhmuc.ID}"></td>
+                                <td th:text="${danhmuc.Tendanhmuc}"></td>
+                                <td th:text="${danhmuc.Trangthai}"></td>
+                            </tr>
+                            <tr th:if="${#lists.size(danhmucs) > 10}" th:each="i : ${#numbers.sequence(1, 10 - #lists.size(danhmucs))}">
+                                <td colspan="3">&nbsp;</td>
+                            </tr>
+                    </tbody>
+                </table>
+                <div id="danhmuc-pagination" class="pagination">
+                    <!-- Pagination buttons will be inserted here -->
+                </div>
+            </div>
+
+            <div class="attribute-section">
+                <h3>Kích thước</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="size-id">ID</label>
+                        <input type="text" id="size-id" name="size-id" placeholder="Nhập ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="size-name">Tên</label>
+                        <input type="text" id="size-name" name="size-name" placeholder="Nhập tên">
+                    </div>
+                    <div class="form-group">
+                        <label for="size-description">Mô tả</label>
+                        <input type="text" id="size-description" name="size-description" placeholder="Nhập mô tả">
+                    </div>
+                    <div class="form-group">
+                        <label for="size-status">Trạng thái</label>
+                        <input type="text" id="size-status" name="size-status" placeholder="Nhập trạng thái">
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Mô tả</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="kichthuoc-body" class="table-body">
+                            <tr th:each="size,iterStat : ${sizes}">
+                                <td th:text="${size.ID}"></td>
+                                <td th:text="${size.Tensize}"></td>
+                                <td th:text="${size.Motasize}"></td>
+                                <td th:text="${size.Trangthai}"></td>
+                                <td><button> Detail </button></td>
+                            </tr>
+                            <tr th:if="${#lists.size(sizes) < 10}" th:each="i : ${#numbers.sequence(1, 10 - #lists.size(sizes))}">
+                                <td colspan="4">&nbsp;</td>
+                            </tr>
+                    </tbody>
+                </table>
+                <div id="kichthuoc-pagination" class="pagination">
+                    <!-- Pagination buttons will be inserted here -->
+                </div>
+            </div>  
+            <!--//chatlieu-->
+            <div class="attribute-section">
+                <h3>Chất liệu</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="chatlieu-id">ID</label>
+                        <input type="text" id="chatlieu-id" name="chatlieu-id" placeholder="Nhập ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="chatlieu-name">Tên</label>
+                        <input type="text" id="chatlieu-name" name="chatlieu-name" placeholder="Nhập tên">
+                    </div>
+                    <div class="form-group">
+                        <label for="chatlieu-description">Mô tả</label>
+                        <input type="text" id="chatlieu-description" name="chatlieu-description" placeholder="Nhập mô tả">
+                    </div>
+                    <div class="form-group">
+                        <label for="chatlieu-status">Trạng thái</label>
+                        <input type="text" id="chatlieu-status" name="chatlieu-status" placeholder="Nhập trạng thái">
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Mô tả</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="chatlieu-body" class="table-body">
+                            <tr th:each="chatlieu,iterStat : ${chatlieus}">
+                                <td th:text="${chatlieu.ID}"></td>
+                                <td th:text="${chatlieu.Tenchatlieu}"></td>
+                                <td th:text="${chatlieu.Motachatlieu}"></td>
+                                <td th:text="${chatlieu.Trangthai}"></td>
+                                <td><button> Detail </button></td>
+                            </tr>
+                            <tr th:if="${#lists.size(chatlieus) < 10}" th:each="i : ${#numbers.sequence(1, 10 - #lists.size(chatlieus))}">
+                                <td colspan="4">&nbsp;</td>
+                            </tr>
+                    </tbody>
+                </table>
+                <div id="chatlieu-pagination" class="pagination">
+                    <!-- Pagination buttons will be inserted here -->
+                </div>
+            </div>  
+    </div>
+
+    <script>
+        const itemsPerPage = 10;
+
+        function paginateTable(tableBodyId, paginationId) {
+            const tableBody = document.getElementById(tableBodyId);
+            const pagination = document.getElementById(paginationId);
+            const rows = tableBody.getElementsByTagName('tr');
+            const totalItems = rows.length;
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+            function showPage(page) {
+                const start = (page - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                for (let i = 0; i < totalItems; i++) {
+                    rows[i].style.display = i >= start && i < end ? '' : 'none';
+                }
+                updatePagination(page);
+            }
+
+            function updatePagination(currentPage) {
+                pagination.innerHTML = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    const button = document.createElement('button');
+                    button.textContent = i;
+                    button.className = i === currentPage ? 'active' : '';
+                    button.disabled = i === currentPage;
+                    button.addEventListener('click', () => showPage(i));
+                    pagination.appendChild(button);
+                }
+            }
+
+            showPage(1);
+        }
+
+        paginateTable('thuonghieu-body', 'thuonghieu-pagination');
+        paginateTable('trongluong-body', 'trongluong-pagination');
+        paginateTable('mausac-body', 'mausac-pagination');
+        paginateTable('danhmuc-body', 'danhmuc-pagination');
+        paginateTable('kichthuoc-body', 'kichthuoc-pagination');
+        paginateTable('chatlieu-body', 'chatlieu-pagination');
+    </script>
+</body>
+</html>
